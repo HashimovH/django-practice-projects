@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %} About Us {% endblock %}
+{% block headline1 %} BioInfo Hub Feed {% endblock %}
+{% block headline2 %} Platform to share information about Bio Informatics {% endblock %}
+
+{% block content %}
+
+<div class="mainheading">
+    <h1 class="sitetitle">{{ about.title }}</h1>
+    <p class="lead">
+         {{ about.description }}
+    </p>
+
+    <hr>
+    <div class="row" style="padding: 1em;">
+        <div class="col-md-2">
+            <span>
+                <i class="fa fa-mobile"></i> {{ about.phone }}
+            </span>
+        </div>
+        <span class="dot"></span>   
+        <div class="col-md-3">
+            <span>
+                <i class="fa fa-envelope"></i> {{ about.email }}
+            </span>
+        </div>
+    </div>
+    {{ about.about_us }}
+</div>
+
+{% endblock %}

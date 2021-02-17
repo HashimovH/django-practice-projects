@@ -1,0 +1,42 @@
+#header{
+	height: 50px;
+	background: rgba(0,0,0,.5);
+	color: #fff;
+}
+
+#branding h1{
+	color: #fff;
+}
+
+a:link,
+a:visited{
+	color: rgba(0,0,0,.5);
+}
+#content-related {
+    background: #efefef;
+}
+
+
+div.breadcrumbs{
+	background: rgba(0,0,0,.6);
+	color: #efefef;
+}
+
+div.breadcrumbs a{
+	color: #fff;
+}
+
+.button, input[type=submit], input[type=button], .submit-row input, a.button{
+	background-color: #10284e;
+	color: #fff;
+}
+
+/* MY Styles */
+.module h2, .module caption, .inline-group h2 {
+    color: #fff;
+    background: rgba(0,0,0,.5) !important;
+}
+
+.module h2{
+	color:#fff !important;
+}

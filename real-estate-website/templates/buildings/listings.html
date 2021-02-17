@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block 'title' %}Avaliable Estates - Real Estate{% endblock %}
+
+{% block 'seo' %}
+
+{% endblock %}
+{% block 'extraClass' %}inner-pages homepage-4 agents{% endblock %}
+
+{% block 'content' %}
+<section class="properties-right featured portfolio ho-17 blog">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 blog-pots">
+                <section class="headings-2 pt-0">
+                    <div class="pro-wrapper">
+                        <div class="detail-wrapper-body">
+                            <div class="listing-title-bar">
+                                <div class="text-heading text-left">
+                                    <p><a href="{% url 'home' %}">Home </a> &nbsp;/&nbsp; <span>Estates</span></p>
+                                </div>
+                                <h3>Estates in '{{ cat }}' category</h3>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <div class="row portfolio-items">
+                	{% for estate in estates %}
+                    <div class="item col-lg-6 col-md-6 col-xs-12 landscapes sale">
+                        <a href="{% url 'detail' estate.slug %}" class="recent-16">
+                            <div class="recent-img16 img-center" style="background-image: url({{ estate.image_main.url  }});"></div>
+                            <div class="recent-content"></div>
+                            <div class="recent-details">
+                                <div class="recent-title">{{ estate.title }}</div>
+                                <div class="recent-price">${{ estate.price }}</div>
+                                <div class="house-details">{{ estate.bedrooms }} Bed <span>|</span> {{ estate.bath }} Bath <span>|</span> {{ estate.area }} sq ft</div>
+                            </div>
+                            <div class="view-proper">
+                            	<a href="{% url 'detail' estate.slug %}" title="{{ estate.title }}">View Details</a></div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <aside class="col-lg-3 col-md-12">
+                <div class="widget">
+                    <!-- Search Fields -->
+                    <div class=" pt-3">
+                        <h5 class="title">Search Property</h5>
+                        <form method="GET" action="?cat=cat">
+                            <div class="mb-3">
+                                <label for="bedrooms">Bedrooms</label>
+                                <input class="form-control" type="number" max="10" min="1" name="bedrooms" value="{{ bedrooms }}">
+                                <input type="hidden" name="cat" value="{{ cat.slug }}">
+                            </div>
+                        	<div class="mb-3">
+                                <label for="city">City</label>
+                                <select class="form-control" name="city">
+                                    <option value="boston">Boston</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="city">Type</label>
+                                <select class="form-control" name="type">
+                                    <option value="shared">Shared</option>
+                                    <option value="shared">Apartment</option>
+                                    <option value="shared">Detached</option>
+                                    <option value="shared">House</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label>Utility Included: </label>
+                                <input type="radio" name="utility" value="yes">Yes &nbsp;
+                                <input type="radio" name="utility" value="no">No
+                            </div>
+                            <div class="mb-3">
+                                <label>Parking: </label>
+                                <input type="radio" name="parking" value="yes">Yes
+                                <input type="radio" name="parking" value="no">No
+                            </div>
+                            <div class="mb-3">
+                                <label>Transporation: </label>
+                                <input type="radio" name="transport" value="close">Close 
+                                <input type="radio" name="transport" value="far">Far
+                            </div>
+                            
+                            <div class="col-lg-12 no-pds">
+                                <div class="at-col-default-mar">
+                                    <input class="at-input" type="text" name="min-price" placeholder="Min Price">
+                                </div>
+                            </div>
+                            <div class="col-lg-12 no-pds my-4">
+                                <div class="at-col-default-mar">
+                                    <input class="at-input" type="text" name="max-price" placeholder="Max Price">
+                                </div>
+                            </div>
+                            <div class="col-lg-12 no-pds">
+                                <div class="at-col-default-mar">
+                                    <button class="btn btn-default hvr-bounce-to-right" type="submit">Search</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <div class="recent-post py-5">
+                        <h5 class="font-weight-bold mb-4">Recent Estates</h5>
+                        {% for recent in recents %}
+                        <div class="recent-main">
+                            <div class="recent-img">
+                                <a href="{% url 'detail' recent.slug %}"><img src="{{ recent.image_main.url }}" alt="{{ recent.title }}"></a>
+                            </div>
+                            <div class="info-img">
+                                <a href="{% url 'detail' recent.slug %}"><h6>{{ recent.title }}</h6></a>
+                                <p>${{recent.price}}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                                    </div>
+                    <div class="recent-post">
+                        <h5 class="font-weight-bold mb-4">Advertisement</h5>
+                         <img src="https://res.cloudinary.com/teepublic/image/private/s--NO6Gu1sr--/t_Resized%20Artwork/c_fit,g_north_west,h_954,w_954/co_ffffff,e_outline:48/co_ffffff,e_outline:inner_fill:48/co_ffffff,e_outline:48/co_ffffff,e_outline:inner_fill:48/co_bbbbbb,e_outline:3:1000/c_mpad,g_center,h_1260,w_1260/b_rgb:eeeeee/c_limit,f_auto,h_630,q_90,w_630/v1549446462/production/designs/4152450_0.jpg" class="w-100" alt="Your Ad">
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        {% if estates.has_other_pages %}
+        <nav aria-label="pagination" class="pt-55">
+
+
+            <ul class="pagination disabled">
+                {% if estates.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ estates.previous_page_number }}" tabindex="-1">Previous</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link disable" href="#" tabindex="-1">Previous</a>
+                </li>
+                {% endif %}
+
+                {% for i in posts.paginator.page_range %}
+                {% if posts.number == i %}
+                  <li class="page-item active">
+                    <a class="page-link" href="#" title="{{ i }}">{{ i }} <span class="sr-only">(current)</span></a>
+                </li>
+                {% else %}
+                  <li class="page-item"><a class="page-link" href="?page={{ i }}" title="Page {{ i }}">{{ i }}</a></li>
+                {% endif %}
+              {% endfor %}
+                
+                {% if posts.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ posts.next_page_number }}" title="Next">Next</a>
+                </li>
+              {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link disabled" href="#" title="Next">Next</a>
+                </li>
+              {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+</section>
+
+{% endblock %}

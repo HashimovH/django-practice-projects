@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block 'title' %}Contact Us - Real Estate{% endblock %}
+
+{% block 'seo' %}
+
+{% endblock %}
+{% block 'extraClass' %}inner-pages{% endblock %}
+
+{% block 'content' %}
+<section class="headings" style="background:linear-gradient(rgba(18, 27, 34, 0.6), rgba(18, 27, 34, 0.6)), url(https://code-theme.com/html/findhouses/images/bg/bg-details.jpg) no-repeat center center">
+    <div class="text-heading text-center">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <h2><a href="{% url 'home' %}">Home </a> &nbsp;/&nbsp; Contact</h2>
+        </div>
+    </div>
+</section>
+<section class="contact-us">
+    <div class="container">
+        <div class="property-location mb-5">
+            <h3>Our Location</h3>
+            <div class="divider-fade"></div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d188820.043304135!2d-71.1103706614002!3d42.314518592487445!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89e3652d0d3d311b%3A0x787cbf240162e8a0!2sBoston%2C%20MA%2C%20USA!5e0!3m2!1sen!2see!4v1605696891264!5m2!1sen!2see" frameborder="0" style="border:0;width: 100%;height: 450px;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <h3 class="mb-4">Contact Us</h3>
+                <form id="contactform" class="contact-form" name="contactform" method="post" novalidate="novalidate">
+                    <div id="success" class="successform">
+                        <p class="alert alert-success font-weight-bold" role="alert">Your message was sent successfully!</p>
+                    </div>
+                    <div id="error" class="errorform">
+                        <p>Something went wrong, try refreshing and submitting the form again.</p>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" required="" class="form-control input-custom input-full" name="name" placeholder="First Name" aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" required="" class="form-control input-custom input-full" name="lastname" placeholder="Last Name" aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control input-custom input-full" name="email" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control textarea-custom input-full" id="ccomment" name="message" required="" rows="8" placeholder="Message" aria-required="true"></textarea>
+                    </div>
+                    <button type="submit" id="submit-contact" class="btn btn-primary btn-lg">Submit</button>
+                </form>
+            </div>
+            <div class="col-lg-4 col-md-12 bgc">
+                <div class="call-info">
+                    <h3>Contact Details</h3>
+                    <p class="mb-5">Please find below contact details and contact us today!</p>
+                    <ul>
+                        <li>
+                            <div class="info">
+                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                <p class="in-p">{{ info.address }}</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                <p class="in-p">{{ info.phone }}</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="info">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                                <p class="in-p ti">{{ info.email }}</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block 'title' %}About Us - Real Estate{% endblock %}
+
+{% block 'seo' %}
+
+{% endblock %}
+{% block 'extraClass' %}inner-pages{% endblock %}
+
+{% block 'content' %}
+<section class="headings" style="background:linear-gradient(rgba(18, 27, 34, 0.6), rgba(18, 27, 34, 0.6)), url(https://code-theme.com/html/findhouses/images/bg/bg-details.jpg) no-repeat center center">
+    <div class="text-heading text-center">
+        <div class="container">
+            <h1>About Us</h1>
+            <h2><a href="{% url 'home' %}">Home </a> &nbsp;/&nbsp; About Us</h2>
+        </div>
+    </div>
+</section>
+
+<section class="about-us">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 who-1">
+                <div>
+                    <h2 class="text-left mb-4">About <span>Us</span></h2>
+                </div>
+                <div class="pftext">
+                    {{ info.about_us|safe }}
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 who">
+                <div class="wprt-image-video w50">
+                    <img alt="image" src="https://code-theme.com/html/findhouses/images/projects/welcome.jpg">
+                    <a class="icon-wrap popup-video popup-youtube" href="https://www.youtube.com/watch?v=2xHQqYRcrx4"></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% if services_count > 0 %}
+<main class="services-2">
+    <div class="container">
+        <div class="section-title">
+            <h3>Our</h3>
+            <h2>Services</h2>
+        </div>
+        <div class="row service-1">
+            {% for service in services %}
+            <article class="col-md-4 serv">
+                <div class="art-1 img-1">
+                    <img src="{{ service.icon.url }}" alt="{{ service.title }}" width="52">
+                    <h3>{{ service.title }}</h3>
+                    <p>{{ service.description }}</p>
+                </div>
+            </article>
+           {% endfor %}
+        </div>
+    </div>
+</main>
+{% endif %}
+
+{% if statistics_count > 0 %}
+<section class="counterup" style="background:linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(https://code-theme.com/html/findhouses/images/bg/bg-counter2.jpg) no-repeat center center">
+    <div class="container">
+        <div class="row">
+        	{% for st in statistics %}
+            <div class="col-lg-3 col-md-6 col-xs-12">
+                <div class="countr">
+                    <i class="{{ st.icon }}" aria-hidden="true"></i>
+                    <div class="count-me">
+                        <p class="counter text-left">{{ st.count }}</p>
+                        <h3>{{ st.title }}</h3>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+
+{% if count_teams > 0 %}
+<section class="team">
+    <div class="container">
+        <div class="section-title col-md-5">
+            <h3>Meet Our</h3>
+            <h2>Team</h2>
+        </div>
+        <div class="row team-all">
+        	{% for team in teams %}
+            <div class="col-lg-3 col-md-6 team-pro">
+                <div class="team-wrap">
+                    <div class="team-img">
+                        <img src="{{ team.image.url }}" alt="{{ team.full_name }}">
+                    </div>
+                    <div class="team-content">
+                        <div class="team-info">
+                            <h3>{{ team.full_name }}</h3>
+                            <p>{{ team.title }}</p>
+                            <div class="team-socials">
+                                <ul>
+                                    <li>
+                                        <a href="{{ team.facebook }}" title="facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                                        <a href="{{ team.linkedin }}" title="linkedin"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                                        <a href="{{ team.website }}" title="website"><i class="fa fa-chrome" aria-hidden="true"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           {% endfor %}
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,20 @@
+Todo 
+1) Email verification
+4) Unique slug, username test
+8) Heroku connect to bitbucket
+9) MongoDB or SQLite 
+10) Input character count
+
+
+My Profile section +++++++++
+
+Version 2 notes
+1) Featured post by admin
+2) Confirmed signed user by admin
+3) Advertisement places
+4) Dynamic advertisement images
+
+
+Design
+1) Mail template
+2) Custom Error template

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %} Delete {{ post.title }} {% endblock %}
+{% block headline1 %} BioInfo Hub Feed {% endblock %}
+{% block headline2 %}  {% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1>Delete post</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="jumbutron">
+                <h2>Are you sure to delete post "{{ post.title }}" </h2>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-lg btn-danger">Delete <i class="fa fa-trash"></i></button>
+                    <a href="{% url 'profile' %}" class="btn btn-lg btn-info">Back to my profile <i class="fa fa-arrow-right"></i></a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %} Edit Post {% endblock %}
+{% block headline1 %} BioInfo Hub Feed {% endblock %}
+{% block headline2 %} Platform to share information about Bio Informatics {% endblock %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container">
+    <h1>Create new post</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="text-center">
+                    <button class="btn btn-sm btn-success"> Update <i class="fa fa-edit"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

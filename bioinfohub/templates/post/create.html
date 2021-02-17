@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %} New Post {% endblock %}
+{% block headline1 %} BioInfo Hub Feed {% endblock %}
+{% block headline2 %} Your post can change everything {% endblock %}
+
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+    <h1>Create new post</h1>
+    <hr>
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+            <form method="POST" action="" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="text-center">
+                    <button class="btn btn-sm btn-success" type="submit">Post now <i class="fa fa-check"></i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- <style type="text/css">
+    #id_content{
+        width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;
+    }
+</style> -->
+{% block js %}
+
+{% endblock %}
+
+{% endblock %}

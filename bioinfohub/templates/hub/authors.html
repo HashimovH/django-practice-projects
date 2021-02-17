@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %} Authors List {% endblock %}
+{% block headline1 %} Authors {% endblock %}
+{% block headline2 %} Our high skilled authors. {% endblock %}
+{% block content %}
+
+<!-- Team -->
+<section id="team" class="pb-5">
+    <div class="container">
+        <h5 class="section-title h1">OUR AUTHORS</h5>
+        <div class="row">
+        	{% for author in profiles %}
+            <!-- Team member -->
+            <div class="col-xs-12 col-sm-6 col-md-4">
+                <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                    <div class="mainflip">
+                        <div class="frontside">
+                            <div class="card">
+                                <div class="card-body text-center">
+                                    <p style="padding-top: 2em;"><img class=" img-fluid" src="{{ author.avatar.url }}" alt="{{ author.user.first_name }}"></p>
+                                    <h4 class="card-title">{{ author.user.first_name }} {{ author.user.last_name }}</h4>
+                                    <p class="card-text" style="min-width: 340px;">{{ author.bio }}</p>
+                                    <a href="#" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="backside">
+                            <div class="card">
+                                <div class="card-body text-center mt-4" style="padding-top: 2em;">
+                                    <h4 class="card-title">{{ author.user.first_name }} {{ author.user.last_name }}</h4>
+                                    <p class="card-text" style="min-width: 340px;">{{ author.about }}</p>
+                                    <ul class="list-inline">
+                                    	{% if author.facebook %}
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="{{ author.facebook }}" title="Facebook">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        {% endif %}
+                                    	{% if author.twitter %}
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="{{ author.twitter }}" title="Twitter">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        {% endif %}
+                                        {% if author.linkedin %}
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="{{ author.linkedin }}" title="linkedin">
+                                                <i class="fa fa-linkedin"></i>
+                                            </a>
+                                        </li>
+                                        {% endif %}
+                                        {% if author.goodwall %}
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="{{ author.goodwall }}" title="goodwall">
+                                                <i class="fa fa-goodwall"></i>
+                                            </a>
+                                        </li>
+                                        {% endif %}
+                                        {% if author.website %}
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" target="_blank" href="{{ author.website }}" title="website">
+                                                <i class="fa fa-chrome"></i>
+                                            </a>
+                                        </li>
+                                        {% endif %}
+                                        <li class="list-inline-item">
+                                            <a class="social-icon text-xs-center" href="{% url 'author-detail' author.user.username %}">
+                                                More <i class="fa fa-plus"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ./Team member -->
+           {% endfor %}
+
+        </div>
+    </div>
+</section>
+
+{% endblock %}

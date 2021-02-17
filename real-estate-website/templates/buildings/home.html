@@ -1,0 +1,200 @@
+{% extends 'base.html' %}
+
+{% block 'title' %}Home - Real Estate{% endblock %}
+
+{% block 'seo' %}
+
+{% endblock %}
+
+
+{% block 'content' %}
+<!-- STAR HEADER SEARCH -->
+{% include 'partials/_hero.html' %}
+<!-- END HEADER SEARCH -->
+
+<!-- START SECTION RECENTLY PROPERTIES -->
+<section class="recently portfolio bshd">
+    <div class="container">
+        <div class="section-title">
+            <h3>Recently</h3>
+            <h2>Properties</h2>
+        </div>
+        <div class="row portfolio-items">
+        	{% for r in recent %}
+            <div class="item col-lg-4 col-md-6 col-xs-12 landscapes">
+                <div class="project-single">
+                    <div class="project-inner project-head">
+                        <div class="project-bottom">
+                            <h4><a href="{% url 'detail' r.slug %}">View Property</a><span class="category">Real Estate</span></h4>
+                        </div>
+                        <div class="homes">
+                            <!-- homes img -->
+                            <a href="single-property-1.html" class="homes-img">
+                            	{% if r.is_featured %}
+                                <div class="homes-tag button alt featured">Featured</div>
+                                {% endif %}
+                                <img src="{{ r.image_main.url }}" alt="{{ r.title }}" class="img-responsive">
+                            </a>
+                        </div>
+                        <div class="button-effect">
+                            <a href="{% url 'detail' r.slug %}" class="btn"><i class="fa fa-link"></i></a>
+                            <a href="{{ r.image_main.url }}" class="img-poppu btn"><i class="fa fa-photo"></i></a>
+                        </div>
+                    </div>
+                    <!-- homes content -->
+                    <div class="homes-content">
+                        <!-- homes address -->
+                        <h3><a href="{% url 'detail' r.slug %}" title="{{ r.title }}">{{ r.title }}</a></h3>
+                        <p class="homes-address mb-3">
+                            <a href="{% url 'detail' r.slug %}" title="{{ r.title }}">
+                                <i class="fa fa-map-marker"></i><span>{{ r.address }}</span>
+                            </a>
+                        </p>
+                        <!-- homes List -->
+                        <ul class="homes-list clearfix">
+                            <li>
+                                <i class="fa fa-bed" aria-hidden="true"></i>
+                                <span>{{ r.bedrooms }} Bedrooms</span>
+                            </li>
+                            <li>
+                                <i class="fa fa-bath" aria-hidden="true"></i>
+                                <span>{{ r.bath }} Bathrooms</span>
+                            </li>
+                            <li>
+                                <i class="fa fa-object-group" aria-hidden="true"></i>
+                                <span>{{ r.area }} sq/ft</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-warehouse" aria-hidden="true"></i>
+                                <span>{{ r.garages }} Garages</span>
+                            </li>
+                        </ul>
+                        <!-- Price -->
+                        <div class="price-properties">
+                            <h3 class="title mt-3">
+                        <a href="{% url 'detail' r.slug %}" title="{{ r.title }}">$ {{ r.price }}</a>
+                        </h3>
+                        <span>
+	                        <i class="fa fa-calendar"></i> {{ r.created_at }}
+	                    </span>
+                        </div>
+                        <div class="footer">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- END SECTION RECENTLY PROPERTIES -->
+<!-- START SECTION SERVICES -->
+<section class="services-home" style="background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url(https://code-theme.com/html/findhouses/images/bg/bg-counter.jpg) no-repeat center center">
+    <div class="container">
+        <div class="section-title">
+            <h3>Our</h3>
+            <h2>Services</h2>
+        </div>
+        <div class="row">
+        	{% for service in services %}
+            <div class="col-lg-4 col-md-12 m-top-0 m-bottom-40">
+                <div class="service bg-light-2 border-1 border-light box-shadow-1 box-shadow-2-hover">
+                    <div class="media">
+                        <img src="{{ service.icon.url }}" alt="{{ service.title }}" style="width: 60px; height: 60px;">
+                    </div>
+                    <div class="agent-section p-top-35 p-bottom-30 p-right-25 p-left-25">
+                        <h4 class="m-bottom-15 text-bold-700">{{ service.title }}</h4>
+                        <p>{{ service.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- END SECTION SERVICES -->
+<!-- START SECTION RECENTLY PROPERTIES -->
+<section class="recently portfolio bshd">
+    <div class="container">
+        <div class="section-title">
+            <h3>Featured</h3>
+            <h2>Properties</h2>
+        </div>
+        <div class="row portfolio-items">
+        	{% for r in is_featured %}
+            <div class="item col-lg-4 col-md-6 col-xs-12 landscapes">
+                <div class="project-single">
+                    <div class="project-inner project-head">
+                        <div class="project-bottom">
+                            <h4><a href="{% url 'detail' r.slug %}">View Property</a><span class="category">Real Estate</span></h4>
+                        </div>
+                        <div class="homes">
+                            <!-- homes img -->
+                            <a href="single-property-1.html" class="homes-img">
+                            	{% if r.is_featured %}
+                                <div class="homes-tag button alt featured">Featured</div>
+                                {% endif %}
+                                <img src="{{ r.image_main.url }}" alt="{{ r.title }}" class="img-responsive">
+                            </a>
+                        </div>
+                        <div class="button-effect">
+                            <a href="{% url 'detail' r.slug %}" class="btn"><i class="fa fa-link"></i></a>
+                            <a href="{{ r.image_main.url }}" class="img-poppu btn"><i class="fa fa-photo"></i></a>
+                        </div>
+                    </div>
+                    <!-- homes content -->
+                    <div class="homes-content">
+                        <!-- homes address -->
+                        <h3><a href="{% url 'detail' r.slug %}" title="{{ r.title }}">{{ r.title }}</a></h3>
+                        <p class="homes-address mb-3">
+                            <a href="{% url 'detail' r.slug %}" title="{{ r.title }}">
+                                <i class="fa fa-map-marker"></i><span>{{ r.address }}</span>
+                            </a>
+                        </p>
+                        <!-- homes List -->
+                        <ul class="homes-list clearfix">
+                            <li>
+                                <i class="fa fa-bed" aria-hidden="true"></i>
+                                <span>{{ r.bedrooms }} Bedrooms</span>
+                            </li>
+                            <li>
+                                <i class="fa fa-bath" aria-hidden="true"></i>
+                                <span>{{ r.bath }} Bathrooms</span>
+                            </li>
+                            <li>
+                                <i class="fa fa-object-group" aria-hidden="true"></i>
+                                <span>{{ r.area }} sq/ft</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-warehouse" aria-hidden="true"></i>
+                                <span>{{ r.garages }} Garages</span>
+                            </li>
+                        </ul>
+                        <!-- Price -->
+                        <div class="price-properties">
+                            <h3 class="title mt-3">
+                        <a href="{% url 'detail' r.slug %}" title="{{ r.title }}">$ {{ r.price }}</a>
+                        </h3>
+                        <span>
+	                        <i class="fa fa-calendar"></i> {{ r.created_at }}
+	                    </span>
+                        </div>
+                        <div class="footer">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+<!-- END SECTION RECENTLY PROPERTIES -->
+
+
+
+
+
+
+{% endblock %}

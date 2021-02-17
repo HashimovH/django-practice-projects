@@ -1,0 +1,80 @@
+<section id="hero-area" class="parallax-search overlay" data-stellar-background-ratio="0.5" style="background: url('https://code-theme.com/html/findhouses/images/bg/bg-demo.jpg');">
+    <div class="hero-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="hero-inner">
+                        <!-- Welcome Text -->
+                        <div class="welcome-text">
+                            <h1>Find Your Dream Home</h1>
+                            <p>We have over million properties for you</p>
+                        </div>
+                        <!--/ End Welcome Text -->
+                        <!-- Search Form -->
+                        <div class="trip-search">
+                            <form class="form" method="GET" action="{% url 'estates' %}">
+                                <!-- Form Location -->
+                                <div class="form-group location">
+                                    <select class="nice-select form-control wide" name="city">
+                                        <option selected="selected">City
+                                        </option>
+                                        <option>Boston</option>
+                                    </select>
+                                </div>
+                                <!--/ End Form Location -->
+                                <!-- Form Property Type -->
+                                <div class="form-group">
+                                    <select class="nice-select form-control wide" name="type">
+                                        <option value="">Type
+                                        </option>
+                                        <option>House</option>
+                                    </select>
+                                </div>
+                                <!--/ End Form Property Type -->
+                                <!-- Form Bedrooms -->
+                                <div class="form-group">
+                                    <select class="nice-select form-control wide" name="bedroom">
+                                        <option value="">Bedrooms
+                                        </option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select class="nice-select form-control wide" name="cat">
+                                        <option value="">Category
+                                        </option>
+                                        {% for cat in categories %}
+                                        <option value="{{ cat.slug }}">{{ cat.title }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select class="nice-select form-control wide" name="bedroom">
+                                        <option value="">Parking
+                                        </option>
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </div>
+                                <!--/ End Form Bedrooms -->
+                                <!-- Form Button -->
+                                <div class="form-group button">
+                                    <button type="submit" class="btn">Search</button>
+                                </div>
+                                <!--/ End Form Button -->
+                            </form>
+                        </div>
+                        <!--/ End Search Form -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

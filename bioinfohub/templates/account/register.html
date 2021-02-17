@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %} | Register {% endblock %}
+{% block headline1 %} BioInfo Hub Feed {% endblock %}
+{% block headline2 %} Create an account to share posts {% endblock %}
+
+{% block content %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 offset-md-3">
+			{% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+			<form action="" method="POST">
+				<div class="form-group">
+					<label>Name</label>
+					<input type="text" name="name" placeholder="Your Name" class="form-control">
+					{% csrf_token %}
+				</div>
+				<div class="form-group">
+					<label>Surname</label>
+					<input type="text" name="surname" placeholder="Your Surame" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>Email</label>
+					<input type="email" name="email" placeholder="Your Email" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>Username</label>
+					<input type="text" name="username" placeholder="Your Username" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>Password</label>
+					<input type="password" name="password1" placeholder="******" class="form-control">
+				</div>
+				<div class="form-group">
+					<label>Confirm Password</label>
+					<input type="password" name="password2" placeholder="******" class="form-control">
+				</div>
+				<div class="form-group text-align">
+					<button class="btn btn-info" type="submit">Submit</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

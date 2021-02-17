@@ -1,0 +1,80 @@
+<header id="header-container">
+    <!-- Topbar -->
+    <div class="header-top">
+        <div class="container">
+            <div class="top-info hidden-sm-down">
+                <div class="call-header">
+                    <p><i class="fa fa-phone" aria-hidden="true"></i> {{ info.phone }}</p>
+                </div>
+                <div class="address-header">
+                    <p><i class="fa fa-map-marker" aria-hidden="true"></i> {{ info.address }}</p>
+                </div>
+                <div class="mail-header">
+                    <p><i class="fa fa-envelope" aria-hidden="true"></i> {{ info.email }}</p>
+                </div>
+            </div>
+            <div class="top-social hidden-sm-down">
+                <div class="social-icons-header">
+                    <div class="social-icons">
+                        {% for s in sm %}
+                        <a href="{{ s.url }}"><i class="fa fa-{{ s.title }}" aria-hidden="true"></i></a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <!-- Topbar / End -->
+    <!-- Header -->
+    <div id="header">
+        <div class="container">
+            <!-- Left Side Content -->
+            <div class="left-side">
+                <!-- Logo -->
+                <div id="logo">
+                    <a href="{% url 'home' %}"><img src="{{ info.logo.url }}" alt="{{ info.company_name }}"></a>
+                </div>
+                <!-- Mobile Navigation -->
+                <div class="mmenu-trigger">
+                    <button class="hamburger hamburger--collapse" type="button">
+                        <span class="hamburger-box">
+    				<span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+                <!-- Main Navigation -->
+                <nav id="navigation" class="style-1">
+                    <ul id="responsive">
+                        <li>
+                            <a class="{% if home %}current{% endif %}" title="Home" href="{% url 'home' %}">Home</a>
+                        </li>
+                        <li>
+                            <a class="{% if rentals %}current{% endif %}" title="Home" href="{% url 'home' %}">Rentals</a>
+                        </li>
+                        <li>
+                            <a class="{% if estates_menu %}current{% endif %}" title="Estates" href="{% url 'estates' %}">Estates</a>
+                            <ul>
+                                {% for cat in categories %}
+                                <li><a href="{% url 'estates'%}?cat={{ cat.slug }}">{{ cat.title }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="{% if about %}current{% endif %}" href="{% url 'about' %}" title="About">About Us</a>
+                        </li>
+                        <li>
+                            <a class="{% if contact %}current{% endif %}" href="{% url 'contact' %}" title="Contact">Contact</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="clearfix"></div>
+                <!-- Main Navigation / End -->
+            </div>
+            <!-- Left Side Content / End -->
+
+        </div>
+    </div>
+    <!-- Header / End -->
+
+</header>

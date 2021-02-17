@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% block title %} {{ post.title }} {% endblock %}
+{% block headline1 %} BioInfo Hub Feed {% endblock %}
+{% block headline2 %} Platform to share information about Bio Informatics {% endblock %}
+{% load humanize %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <!-- Begin Fixed Left Share -->
+        <div class="col-md-2 col-xs-12">
+            
+        </div>
+        <!-- End Fixed Left Share -->
+        <!-- Begin Post -->
+        <div class="col-md-8 col-md-offset-2 col-xs-12">
+            <div class="mainheading">
+
+                <!-- Begin Top Meta -->
+                <div class="row post-top-meta">
+                    <div class="col-md-2">
+                        <a href="{% url 'author-detail' author.user.username %}"><img class="author-thumb" src="{{ author.avatar.url }}" alt="{{ post.author.first_name }} {{ post.author.last_name }}" style="width: 80px; height: 80px;"></a>
+                    </div>
+                    <div class="col-md-10">
+                        <a class="link-dark" href="{% url 'author-detail' author.user.id %}">{{ post.author.first_name }} {{ post.author.last_name }}</a><!-- <a href="#" class="btn follow">Follow</a> -->
+                        <span class="author-description">
+                            <p>{{ author.bio }}</p>
+                        </span>
+                        <br>
+                        <span class="post-date">
+                            <i class="fas fa-clock"></i>{{ post.created_at|naturaltime }}
+                        </span>
+                        <span class="dot"></span>
+                        <span class="post-read"><i class="fa fa-eye"></i> {{ post.preview }}</span>
+                        <span class="dot"></span>
+                        <span class="post-read"><i class="fa fa-bookmark"></i> {{ save_count }}</span>
+                    </div>
+                </div>
+                <!-- End Top Menta -->
+
+                <h1 class="posttitle">{{ post.title }}
+                    <div class="pull-right">
+                        {% if post.user == request.user %}
+                            <small><i class="fa fa-bookmark"></i></small>
+                        {% elif is_saved  %}
+                            <small><i class="fa fa-bookmark"></i></small>
+                        {% else %}
+                            <a href="{% url 'post-save' post.id %}">
+                                <small><i class="fa fa-bookmark-o"></i></small>
+                            </a>
+                        {% endif %}
+                </div>
+                </h1>
+
+            </div>
+
+            <!-- Begin Featured Image -->
+            <img class="featured-image img-fluid" src="{{ post.image.url }}" alt="{{ post.title }}">
+            <!-- End Featured Image -->
+
+            <!-- Begin Post Content -->
+            <div class="article-post">
+                {{ post.content|safe }}
+            </div>
+            <!-- End Post Content -->
+
+
+
+        </div>
+        <!-- End Post -->
+
+    </div>
+</div>
+<div class="container">
+    <div class="row comment-box">
+        {% if user.is_authenticated %}
+        <div class="col-md-8 offset-md-2">
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+            <form method="POST" action="">
+                {% csrf_token %}
+                {{ comment_form|crispy }}
+                <button class="btn btn-sm btn-primary" type="submit" name="submit">Write <i class="fa fa-comment"></i></button>
+            </form>
+        </div>
+        {% else %}
+        <div class="col-md-8 offset-md-2 not-allowed">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="text-right">Please, <a href="{% url 'login' %}">login</a> to post comment</h4>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Comments</h3>
+            <hr class="divider"></hr>
+        </div>
+        {% for comment in comments %}
+            <div class="col-md-8 graybg mt-2 ml-3" style="padding-top: 1em; padding-left: 1em; padding-bottom: 1em;">
+                <div class="row">
+                    <div class="col-2">
+                        <img src="{{ comment.author.profile.avatar.url }}" class="img-rounded img-circle " alt="{{ comment.author.first_name }} {{ comment.author.last_name }}" style="width: 90px !important;height: 90px;border-radius: 100%;">
+                    </div>
+                    <div class="col-10">
+                        <div class="meta">
+                            <h5 class="title">{{ post.author.first_name }} {{ post.author.last_name }}</h5>
+                            <small>{{ comment.comment_date }}</small>
+                        </div>
+                        <div class="comment card-body">
+                            <p>{{ comment.comment }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<div class="mt-5">
+    <div class="container">
+        <h3>More by {{ post.author.username }}</h3>
+        <hr class="divider"></hr>
+        <div class="row listrecent listrelated">
+
+            {% for ext in extra %}
+            <!-- begin post -->
+            <div class="col-md-3">
+                <div class="card">
+                    <a href="{% url 'post-detail' ext.slug %}">
+                    <img class="img-fluid img-thumb" src="{{ ext.image.url }}" alt="{{ ext.title }}">
+                    </a>
+                    <div class="card-block">
+                        <h2 class="card-title"><a href="{% url 'post-detail' ext.slug %}" title="{{ ext.title }}">{{ ext.title }}</a></h2>
+                        <div class="metafooter">
+                            <div class="wrapfooter">
+                                <span class="meta-footer-thumb">
+                                <a href="{% url 'author-detail' ext.author.id %}"><img class="author-thumb" src="{{ ext.author.profile.avatar.url }}" alt="{{ ext.author.profile.first_name }} {{ ext.author.profile.last_name }}"></a>
+                                </span>
+                                <span class="author-meta">
+                                <span class="post-name"><a href="{% url 'author-detail' ext.author.id %}">{{ ext.author.profile.first_name }} {{ ext.author.profile.last_name }}</a></span><br>
+                                <span class="post-date"><i class="fas fa-clock"></i>{{ ext.created_at|naturaltime }}</span><span class="dot"></span><span class="post-read"><i class="fa fa-eye"></i> {{ ext.preview }}</span>
+                                </span>
+                                <span class="post-read-more"><a href="{% url 'post-detail' ext.slug %}" title="Read More"><svg class="svgIcon-use" width="25" height="25" viewBox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end post -->
+            {% endfor %}
+           
+
+        </div>
+    </div>
+</div>
+
+<style type="text/css">
+.article-post{
+    background: #f7f7f7;
+}
+.comment-box{
+    background: #f7f7f7;
+    padding-top: 1em;
+}
+
+.not-allowed{
+    background: #f7f7f7;
+    padding-top: 1em;
+    padding-bottom: 1em;
+}
+</style>
+
+{% endblock %}
